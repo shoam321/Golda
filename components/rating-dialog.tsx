@@ -19,15 +19,15 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
   })
   const [isLoading, setIsLoading] = useState(false)
 
+  const ratingValues = Object.values(ratings)
+  const completedRatings = ratingValues.filter((n) => n > 0)
+
   const handleStarClick = (question: keyof typeof ratings, value: number) => {
     setRatings((prev) => ({ ...prev, [question]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    const ratingValues = Object.values(ratings)
-    const completedRatings = ratingValues.filter((n) => n > 0)
 
     if (completedRatings.length < 5) {
       alert("נא לדרג את כל 5 השאלות")
@@ -118,6 +118,8 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
           </button>
         </div>
       </form>
+
+      {completedRatings.length == 5 && <iframe src=""/>}
     </dialog>
   )
 })
