@@ -143,7 +143,7 @@
   /* FIX 2: The path is now '/background-desktop.jpg' (not '/public/...')
     Make sure your image is in the 'public' folder.
   */
-  background-image: url('/background-desktop.jpg');
+  background-image: url('/background-desktop.jpeg');
 
   /* These styles make the background cover the full screen nicely */
   background-size: cover;
