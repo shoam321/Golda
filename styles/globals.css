@@ -147,18 +147,4 @@
 /* Full-bleed clickable background link.
    This places a full-size anchor behind the UI card so clicking empty background opens the link.
 */
-.site-bg-link {
-  position: absolute;
-  inset: 0;
-  /* anchor is transparent — the main `.site-bg` element supplies the visible background image */
-  background-image: none;
-  background-position: center 28%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-@media (min-width: 768px) {
-  .site-bg-link {
-  background-image: url('/background-desktop.jpg');
-  }
-}
+/* No clickable background link — background is supplied by `body.site-bg`. */
