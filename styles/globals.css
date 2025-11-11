@@ -131,7 +131,8 @@
    This mirrors the previous inline background positioning used in `app/page.tsx`.
 */
 .site-bg {
-  background-image: url('/background-mobile.jpg');
+  /* fall back to desktop image when mobile image is not present */
+  background-image: url('/background-desktop.jpg');
   background-position: center 28%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -139,7 +140,7 @@
 
 @media (min-width: 768px) {
   .site-bg {
-    background-image: url('/public/background-desktop.jpg');
+  background-image: url('/background-desktop.jpg');
   }
 }
 
@@ -149,7 +150,8 @@
 .site-bg-link {
   position: absolute;
   inset: 0;
-  background-image: url('/public/background-desktop.jpg');
+  /* fall back to desktop image when mobile image is not present */
+  background-image: url('/background-desktop.jpg');
   background-position: center 28%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -157,6 +159,6 @@
 
 @media (min-width: 768px) {
   .site-bg-link {
-    background-image: url('/public/background-desktop.jpg');
+  background-image: url('/background-desktop.jpg');
   }
 }
