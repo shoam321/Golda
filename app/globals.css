@@ -1,4 +1,3 @@
-@import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
@@ -116,8 +115,6 @@
 }
 
 /* These directives are needed for Tailwind to work.
-  You had them pasted inside the 'body' rule, 
-  but they must be at the top level.
 */
 @tailwind base;
 @tailwind components;
@@ -129,19 +126,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* I have removed the code you pasted in here. 
-      It now lives in the correct places, see below.
-    */
   }
 }
 
 /*
-  FIX 1: The .site-bg rule is now on its own, not inside 'body'.
-  This is the correct way to write this CSS.
+  This is the part you care about.
 */
 .site-bg {
-  /* FIX 2: The path is now '/background-desktop.jpeg' (not '/public/...')
-    Make sure your image is in the 'public' folder.
+  /*
+    I corrected the typo. It now says 'background-desktop.jpeg'
+    If your file is named something else, just change this line.
   */
   background-image: url('/background-desktop.jpeg');
 
