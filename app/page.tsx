@@ -100,7 +100,7 @@ export default function Home() {
                 background: "linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4)",
               }}
             >
-              <span>Instagram</span>
+              <span style={{ fontSize: '90%' }}>Instagram</span>
             </a>
             <a
               href="https://www.facebook.com/share/1Vr3zZbWQt/?mibextid=wwXIfr"
@@ -118,7 +118,7 @@ export default function Home() {
               aria-label="TikTok"
               className="flex items-center justify-center py-3 px-3.5 rounded-full font-bold text-white shadow-md hover:shadow-lg transition-shadow bg-black"
             >
-              <span>TikTok</span>
+              <span style={{ fontSize: '90%' }}>TikTok</span>
             </a>
             <a
               href="https://wa.me/972XXXXXXXXX"
