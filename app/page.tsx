@@ -122,7 +122,7 @@ export default function Home() {
               }
             />
             <SocialButton
-              href="https://wa.me/972XXXXXXXXX"
+              href="https://wa.me/972546442604"
               label="WhatsApp"
               style={{ background: "#25D366" }}
               icon={
