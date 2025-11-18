@@ -131,22 +131,11 @@
 }
 
 /*
-  This is the part you care about.
+  Background image styles removed - now using video background only
 */
 .site-bg {
-  /*
-    I corrected the typo. It now says 'background-desktop.jpeg'
-    If your file is named something else, just change this line.
-  */
-  background-image: url('/background-desktop.jpeg');
-
-  /* These styles make the background cover the full screen nicely */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* This 'fixes' the background so it doesn't move when you scroll */
-  background-attachment: fixed;
+  position: relative;
+}
 
   /* Optional: Add a fallback color in case the image fails to load */
   background-color: #000;
