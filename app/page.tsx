@@ -67,7 +67,7 @@ export default function Home() {
             Golda
           </h1>
           <p className="text-center text-sm text-gray-600 opacity-90 m-0 mb-3.5">
-            אימון אישי וקבוצות — תוצאות שמרגישים
+            גלידה בכל הטעמים וסוגים בהכנה אישית
           </p>
         </div>
 
