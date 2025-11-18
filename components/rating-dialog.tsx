@@ -40,15 +40,17 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
       const formData = new FormData()
       const average = ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length
 
-      // Add all form data
-      formData.append('rating_q1', ratings.q1.toString())
-      formData.append('rating_q2', ratings.q2.toString())
-      formData.append('rating_q3', ratings.q3.toString())
-      formData.append('rating_q4', ratings.q4.toString())
-      formData.append('rating_q5', ratings.q5.toString())
-      formData.append('average_rating', average.toFixed(1))
-      formData.append('studio_name', 'סטודיו דוראל אזולאי')
-      formData.append('submission_date', new Date().toLocaleString("he-IL"))
+      // Add all form data with descriptive names and star display
+      const starDisplay = (rating: number) => '⭐'.repeat(rating) + ' ' + `(${rating}/5)`
+      
+      formData.append('החוויה הכללית', starDisplay(ratings.q1))
+      formData.append('איכות ההדרכה', starDisplay(ratings.q2))
+      formData.append('רמת השירות', starDisplay(ratings.q3))
+      formData.append('אווירה וניקיון', starDisplay(ratings.q4))
+      formData.append('המלצה לאחרים', starDisplay(ratings.q5))
+      formData.append('ממוצע כללי', `⭐ ${average.toFixed(1)}/5 ${average >= 4 ? '🎉' : ''}`)
+      formData.append('סטודיו', 'סטודיו דוראל אזולאי 💪')
+      formData.append('תאריך שליחה', new Date().toLocaleString("he-IL"))
 
       // Submit to Formspree
       const response = await fetch('https://formspree.io/f/xdkbkoel', {
