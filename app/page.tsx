@@ -59,8 +59,8 @@ export default function Home() {
       {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-0" />
 
-   {/* Card */}
-   <div className="relative z-10 w-[min(420px,92vw)] bg-white/92 backdrop-blur-md border rounded-3xl shadow-lg overflow-hidden"
+  {/* Card */}
+  <div className="relative z-10 w-[min(420px,92vw)] bg-white/60 backdrop-blur-md border rounded-3xl shadow-lg overflow-hidden"
      style={{ borderColor: 'var(--border)' }}>
         {/* Header */}
         <div className="px-[18px] py-6">
