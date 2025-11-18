@@ -49,8 +49,10 @@ export default function RootLayout({
           muted 
           loop 
           playsInline
+          preload="metadata"
+          poster="/placeholder.jpg"
         >
-          <source src="/6183107-hd_1920_1080_30fps.mp4" type="video/mp4" />
+          <source src="/5059604-uhd_2160_4096_30fps.mp4" type="video/mp4" />
         </video>
         {children}
         {/* Sienna accessibility loader (client-side). The visual widget is hidden by default
