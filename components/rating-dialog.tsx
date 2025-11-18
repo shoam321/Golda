@@ -2,8 +2,7 @@
 
 import type React from "react"
 
-import { forwardRef, useState, useEffect } from "react"
-import { useForm, ValidationError } from '@formspree/react'
+import { forwardRef, useState } from "react"
 import StarRating from "./star-rating"
 
 interface RatingDialogProps {
@@ -11,7 +10,6 @@ interface RatingDialogProps {
 }
 
 const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onComplete }, ref) => {
-  const [state, handleSubmit] = useForm("xdkbkoel")
   const [ratings, setRatings] = useState({
     q1: 0,
     q2: 0,
@@ -19,6 +17,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
     q4: 0,
     q5: 0,
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const ratingValues = Object.values(ratings)
   const completedRatings = ratingValues.filter((n) => n > 0)
@@ -35,22 +34,49 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
       return
     }
 
-    // Call the Formspree submit handler
-    await handleSubmit(e)
-  }
+    setIsSubmitting(true)
 
-  // Handle successful submission
-  useEffect(() => {
-    if (state.succeeded) {
+    try {
+      const formData = new FormData()
       const average = ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length
-      
-      if (ref && "current" in ref && ref.current?.open) {
-        ref.current.close()
-      }
 
-      onComplete(average)
+      // Add all form data
+      formData.append('rating_q1', ratings.q1.toString())
+      formData.append('rating_q2', ratings.q2.toString())
+      formData.append('rating_q3', ratings.q3.toString())
+      formData.append('rating_q4', ratings.q4.toString())
+      formData.append('rating_q5', ratings.q5.toString())
+      formData.append('average_rating', average.toFixed(1))
+      formData.append('studio_name', 'סטודיו דוראל אזולאי')
+      formData.append('submission_date', new Date().toLocaleString("he-IL"))
+
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/xdkbkoel', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+
+      if (response.ok) {
+        console.log('Form submitted successfully to Formspree')
+        
+        if (ref && "current" in ref && ref.current?.open) {
+          ref.current.close()
+        }
+
+        onComplete(average)
+      } else {
+        throw new Error('Form submission failed')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('אירעה שגיאה בשליחת הדעה')
+    } finally {
+      setIsSubmitting(false)
     }
-  }, [state.succeeded, ratingValues, ref, onComplete])
+  }
 
   const questions = [
     "איך היית מדרג/ת את החוויה הכללית שלך אצלנו?",
@@ -85,25 +111,13 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
         <input type="hidden" name="studio_name" value="סטודיו דוראל אזולאי" />
         <input type="hidden" name="submission_date" value={new Date().toLocaleString("he-IL")} />
         
-        {/* Validation Errors */}
-        <ValidationError 
-          prefix="Ratings" 
-          field="rating_q1"
-          errors={state.errors}
-        />
-        <ValidationError 
-          prefix="Ratings" 
-          field="rating_q2"
-          errors={state.errors}
-        />
-        
         <div className="flex gap-2 flex-wrap mt-2">
           <button
             type="submit"
-            disabled={state.submitting}
+            disabled={isSubmitting}
             className="flex items-center justify-center gap-2.5 border-0 rounded-full px-4.5 py-3.5 font-bold bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {state.submitting ? "שולח..." : "שליחה"}
+            {isSubmitting ? "שולח..." : "שליחה"}
           </button>
           <button
             type="button"
@@ -112,7 +126,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
                 ref.current?.close()
               }
             }}
-            disabled={state.submitting}
+            disabled={isSubmitting}
             className="flex items-center justify-center gap-2.5 border-0 rounded-full px-4.5 py-3.5 font-bold bg-white text-gray-900 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             סגירה
