@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const { ratings, average } = await request.json()
 
     const recipientEmail = process.env.RECIPIENT as string
-    const studioName = "סטודיו דוראל אזולאי"
+    const studioName = "Golda"
 
     const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     const response = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: recipientEmail,
-      subject: "דעה חדשה התקבלה - סטודיו דוראל אזולאי",
+      subject: "📊 דעה חדשה התקבלה מ־Golda",
       html: emailBody,
     })
 
