@@ -42,17 +42,15 @@ export default function RootLayout({
       {/* Apply site background to the <body> so inner absolutely-positioned elements
           can't accidentally cover or override it. */}
       <body className={`font-sans antialiased site-bg`}>
-        {/* Background Video */}
+        {/* Video Background - replaces the old background image system */}
         <video 
-          className="site-bg-video"
+          className="video-background"
           autoPlay 
           muted 
           loop 
           playsInline
         >
           <source src="/6183107-hd_1920_1080_30fps.mp4" type="video/mp4" />
-          {/* Fallback for browsers that don't support video */}
-          Your browser does not support the video tag.
         </video>
         {children}
         {/* Sienna accessibility loader (client-side). The visual widget is hidden by default

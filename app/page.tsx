@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-dvh flex items-center justify-center relative z-10"
+      className="min-h-dvh flex items-center justify-center relative"
       dir="rtl"
       lang="he"
     >

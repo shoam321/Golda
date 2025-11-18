@@ -125,22 +125,22 @@
 }
 
 /*
-   Video background for the site.
-   The video will be positioned behind all content.
+   Video background replaces the previous background image system.
+   Now uses a video element positioned exactly like the old background images.
 */
 .site-bg {
   position: relative;
-  min-height: 100vh;
 }
 
-.site-bg-video {
+.video-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -10;
+  object-position: center 28%;
+  z-index: -1;
   pointer-events: none;
 }
 
