@@ -92,5 +92,20 @@ body {
 /* Video background container (image background removed) */
 .site-bg {
   position: relative;
-  background-color: #000; /* fallback */
+  /* No solid background so video is visible; keep fallback via poster attribute if needed */
+}
+
+/* Ensure background video sits behind all content but above the body background.
+   Use z-index layering: video (0), overlays (1), cards (2+). */
+.video-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  /* Performance hint for browsers */
+  will-change: transform;
 }
