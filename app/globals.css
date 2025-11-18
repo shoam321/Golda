@@ -4,74 +4,76 @@
 /* Removed @custom-variant (not recognized by VS Code CSS lint) */
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* Golda-inspired light theme */
+  --background: #FAF7F2; /* warm cream */
+  --foreground: #0E3B2E; /* deep forest green */
+  --card: #FFFFFF;
+  --card-foreground: #0E3B2E;
+  --popover: #FFFFFF;
+  --popover-foreground: #0E3B2E;
+  --primary: #0F3D2E; /* brand dark green */
+  --primary-foreground: #FFFFFF;
+  --secondary: #F4ECE4; /* soft sand */
+  --secondary-foreground: #0E3B2E;
+  --muted: #F2EEE8;
+  --muted-foreground: #6B6B6B;
+  --accent: #C7A96B; /* gold */
+  --accent-foreground: #0E3B2E;
+  --destructive: #B03A48;
+  --destructive-foreground: #FFFFFF;
+  --border: #E8E2D9; /* light sand */
+  --input: #E8E2D9;
+  --ring: #C7A96B; /* gold focus ring */
+  --chart-1: #0F3D2E;
+  --chart-2: #C7A96B;
+  --chart-3: #6B8C7A;
+  --chart-4: #D7C5A3;
+  --chart-5: #8C5C2E;
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #0E3B2E;
+  --sidebar-primary: #0F3D2E;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F4ECE4;
+  --sidebar-accent-foreground: #0E3B2E;
+  --sidebar-border: #E8E2D9;
+  --sidebar-ring: #C7A96B;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Optional dark palette aligned to brand */
+  --background: #0E3B2E;
+  --foreground: #FAF7F2;
+  --card: #0F3D2E;
+  --card-foreground: #FAF7F2;
+  --popover: #0F3D2E;
+  --popover-foreground: #FAF7F2;
+  --primary: #C7A96B; /* gold on dark */
+  --primary-foreground: #0E3B2E;
+  --secondary: #143F34;
+  --secondary-foreground: #FAF7F2;
+  --muted: #143F34;
+  --muted-foreground: #CFC8BB;
+  --accent: #D7C5A3;
+  --accent-foreground: #0E3B2E;
+  --destructive: #A33A40;
+  --destructive-foreground: #FAF7F2;
+  --border: #1D4C3F;
+  --input: #1D4C3F;
+  --ring: #C7A96B;
+  --chart-1: #C7A96B;
+  --chart-2: #6B8C7A;
+  --chart-3: #D7C5A3;
+  --chart-4: #8C5C2E;
+  --chart-5: #FAF7F2;
+  --sidebar: #0F3D2E;
+  --sidebar-foreground: #FAF7F2;
+  --sidebar-primary: #C7A96B;
+  --sidebar-primary-foreground: #0E3B2E;
+  --sidebar-accent: #143F34;
+  --sidebar-accent-foreground: #FAF7F2;
+  --sidebar-border: #1D4C3F;
+  --sidebar-ring: #C7A96B;
 }
 
 /* Removed @theme inline block (design tokens already exposed as CSS vars) */

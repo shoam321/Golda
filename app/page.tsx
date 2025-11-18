@@ -59,14 +59,17 @@ export default function Home() {
       {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-0" />
 
-      {/* Card */}
-      <div className="relative z-10 w-[min(420px,92vw)] bg-white/92 backdrop-blur-md border border-gray-200 rounded-3xl shadow-lg overflow-hidden">
+   {/* Card */}
+   <div className="relative z-10 w-[min(420px,92vw)] bg-white/92 backdrop-blur-md border rounded-3xl shadow-lg overflow-hidden"
+     style={{ borderColor: 'var(--border)' }}>
         {/* Header */}
         <div className="px-[18px] py-6">
-          <h1 className="text-center font-bold text-2xl sm:text-3xl m-0 mb-2.5 text-gray-900 tracking-wide">
+          <h1 className="text-center font-bold text-2xl sm:text-3xl m-0 mb-2.5 tracking-wide"
+              style={{ color: 'var(--foreground)' }}>
             Golda
           </h1>
-          <p className="text-center text-sm text-gray-600 opacity-90 m-0 mb-3.5">
+          <p className="text-center text-sm opacity-90 m-0 mb-3.5"
+             style={{ color: 'color-mix(in oklch, var(--foreground) 70%, white)' }}>
             גלידה בכל הטעמים וסוגים בהכנה אישית
           </p>
         </div>
@@ -75,21 +78,23 @@ export default function Home() {
         <div className="grid gap-2.5 px-4 pb-3.5 sm:grid-cols-2">
           <button
             onClick={() => ratingDialogRef.current?.showModal()}
-            className="flex items-center justify-center gap-2.5 border-0 rounded-full px-4.5 py-3.5 font-bold bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150"
+            className="flex items-center justify-center gap-2.5 rounded-full px-4.5 py-3.5 font-bold text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150 focus:outline-none"
+            style={{ backgroundColor: 'var(--primary)' }}
           >
             ⭐ דרגו אותנו!
           </button>
           <button
             onClick={handleShare}
-            className="flex items-center justify-center gap-2.5 border-0 rounded-full px-4.5 py-3.5 font-bold bg-white text-gray-900 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150"
+            className="flex items-center justify-center gap-2.5 rounded-full px-4.5 py-3.5 font-bold bg-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150"
+            style={{ color: 'var(--primary)', borderColor: 'var(--primary)', borderWidth: 1 }}
           >
             💖 ספרו לחבר
           </button>
         </div>
 
         {/* Social Links */}
-        <div className="border-t border-gray-200 bg-gray-50 px-3.5 py-3">
-          <h3 className="text-center m-0 mb-2.5 text-sm text-gray-600">עקבו אחרינו</h3>
+        <div className="border-t px-3.5 py-3" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--secondary)' }}>
+          <h3 className="text-center m-0 mb-2.5 text-sm" style={{ color: 'color-mix(in oklch, var(--foreground) 70%, white)' }}>עקבו אחרינו</h3>
           <div className="grid grid-cols-4 gap-2.5">
             <SocialButton
               href="https://www.instagram.com/dorelazulay/"
@@ -135,7 +140,7 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 px-3.5 py-2.5 text-center text-xs text-gray-600 bg-gray-100">
+        <div className="border-t px-3.5 py-2.5 text-center text-xs" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--secondary)', color: 'color-mix(in oklch, var(--foreground) 70%, white)' }}>
           © {new Date().getFullYear()} Golda
         </div>
       </div>
