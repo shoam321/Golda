@@ -42,6 +42,18 @@ export default function RootLayout({
       {/* Apply site background to the <body> so inner absolutely-positioned elements
           can't accidentally cover or override it. */}
       <body className={`font-sans antialiased site-bg`}>
+        {/* Background Video */}
+        <video 
+          className="site-bg-video"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+        >
+          <source src="/6183107-hd_1920_1080_30fps.mp4" type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          Your browser does not support the video tag.
+        </video>
         {children}
         {/* Sienna accessibility loader (client-side). The visual widget is hidden by default
             via CSS in `styles/globals.css`. Use `document.body.setAttribute('data-sienna','visible')`

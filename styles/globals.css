@@ -124,24 +124,37 @@
   }
 }
 
-/* Responsive site background image utility
-   Place two images in `public/`:
-     - `background-mobile.jpg` (used by default for small screens)
-     - `background-desktop.jpg` (used for md and larger screens)
-   This mirrors the previous inline background positioning used in `app/page.tsx`.
+/*
+   Video background for the site.
+   The video will be positioned absolutely to cover the full viewport.
 */
 .site-bg {
-  /* fall back to desktop image when mobile image is not present */
-  background-image: url('/background-desktop.jpg');
-  background-position: center 28%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .site-bg {
-  background-image: url('/background-desktop.jpg');
-  }
+.site-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: -2;
+}
+
+.site-bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  object-fit: cover;
 }
 
 /* Full-bleed clickable background link.

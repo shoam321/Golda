@@ -27,8 +27,8 @@ export default function Home() {
 
   const handleShare = async () => {
     const shareData = {
-      title: "סטודיו דוראל אזולאי",
-      text: "ממליץ לבדוק את הסטודיו!",
+      title: "Golda",
+      text: "ממליץ לבדוק את Golda!",
       url: "https://dorelazulay.co.il/?fbclid=PAZXh0bgNhZW0CMTEAAaZlRCLmopF17q5inc4w2-ZZ6aBuzcf2BE8Jk_rh0GRn6ciQW5Y2vpF1ISw_aem_eeCSzS95UJc1hSvBD5Q6Dg",
     }
 
@@ -64,7 +64,7 @@ export default function Home() {
         {/* Header */}
         <div className="px-[18px] py-6">
           <h1 className="text-center font-bold text-2xl sm:text-3xl m-0 mb-2.5 text-gray-900 tracking-wide">
-            סטודיו דוראל אזולאי
+            Golda
           </h1>
           <p className="text-center text-sm text-gray-600 opacity-90 m-0 mb-3.5">
             אימון אישי וקבוצות — תוצאות שמרגישים
@@ -136,7 +136,7 @@ export default function Home() {
 
         {/* Footer */}
         <div className="border-t border-gray-200 px-3.5 py-2.5 text-center text-xs text-gray-600 bg-gray-100">
-          © {new Date().getFullYear()} סטודיו דוראל אזולאי
+          © {new Date().getFullYear()} Golda
         </div>
       </div>
 
