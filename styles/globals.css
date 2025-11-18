@@ -126,35 +126,22 @@
 
 /*
    Video background for the site.
-   The video will be positioned absolutely to cover the full viewport.
+   The video will be positioned behind all content.
 */
 .site-bg {
   position: relative;
-  overflow: hidden;
+  min-height: 100vh;
 }
 
-.site-bg::before {
-  content: '';
+.site-bg-video {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  z-index: -2;
-}
-
-.site-bg-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: -1;
   object-fit: cover;
+  z-index: -10;
+  pointer-events: none;
 }
 
 /* Full-bleed clickable background link.

@@ -52,12 +52,12 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-dvh flex items-center justify-center relative"
+      className="min-h-dvh flex items-center justify-center relative z-10"
       dir="rtl"
       lang="he"
     >
       {/* Background overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-0" />
 
       {/* Card */}
       <div className="relative z-10 w-[min(420px,92vw)] bg-white/92 backdrop-blur-md border border-gray-200 rounded-3xl shadow-lg overflow-hidden">
