@@ -2,7 +2,8 @@
 
 import type React from "react"
 
-import { forwardRef, useState } from "react"
+import { forwardRef, useState, useEffect } from "react"
+import { useForm, ValidationError } from '@formspree/react'
 import StarRating from "./star-rating"
 
 interface RatingDialogProps {
@@ -10,6 +11,7 @@ interface RatingDialogProps {
 }
 
 const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onComplete }, ref) => {
+  const [state, handleSubmit] = useForm("xdkbkoel")
   const [ratings, setRatings] = useState({
     q1: 0,
     q2: 0,
@@ -17,7 +19,6 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
     q4: 0,
     q5: 0,
   })
-  const [isLoading, setIsLoading] = useState(false)
 
   const ratingValues = Object.values(ratings)
   const completedRatings = ratingValues.filter((n) => n > 0)
@@ -26,7 +27,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
     setRatings((prev) => ({ ...prev, [question]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (completedRatings.length < 5) {
@@ -34,21 +35,22 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
       return
     }
 
-    const average = ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length
+    // Call the Formspree submit handler
+    await handleSubmit(e)
+  }
 
-    setIsLoading(true)
-    
-    // Let the form submit naturally to Formspree, then handle completion
-    setTimeout(() => {
-      setIsLoading(false)
+  // Handle successful submission
+  useEffect(() => {
+    if (state.succeeded) {
+      const average = ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length
       
       if (ref && "current" in ref && ref.current?.open) {
         ref.current.close()
       }
 
       onComplete(average)
-    }, 1000)
-  }
+    }
+  }, [state.succeeded, ratingValues, ref, onComplete])
 
   const questions = [
     "איך היית מדרג/ת את החוויה הכללית שלך אצלנו?",
@@ -66,7 +68,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
       <h3 className="m-0 mb-2.5 text-base font-bold">דעתכם חשובה לנו</h3>
       <p className="m-0 mb-2 text-sm text-gray-600">דרגו כל סעיף בין ⭐1 ל-⭐5</p>
 
-      <form action="https://formspree.io/f/xdkbkoel" method="POST" onSubmit={handleSubmit} className="space-y-2">
+      <form onSubmit={handleFormSubmit} className="space-y-2">
         {questions.map((question, idx) => {
           const qKey = `q${idx + 1}` as keyof typeof ratings
           return (
@@ -83,13 +85,25 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
         <input type="hidden" name="studio_name" value="סטודיו דוראל אזולאי" />
         <input type="hidden" name="submission_date" value={new Date().toLocaleString("he-IL")} />
         
+        {/* Validation Errors */}
+        <ValidationError 
+          prefix="Ratings" 
+          field="rating_q1"
+          errors={state.errors}
+        />
+        <ValidationError 
+          prefix="Ratings" 
+          field="rating_q2"
+          errors={state.errors}
+        />
+        
         <div className="flex gap-2 flex-wrap mt-2">
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={state.submitting}
             className="flex items-center justify-center gap-2.5 border-0 rounded-full px-4.5 py-3.5 font-bold bg-gradient-to-br from-gray-900 to-gray-700 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? "שולח..." : "שליחה"}
+            {state.submitting ? "שולח..." : "שליחה"}
           </button>
           <button
             type="button"
@@ -98,7 +112,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
                 ref.current?.close()
               }
             }}
-            disabled={isLoading}
+            disabled={state.submitting}
             className="flex items-center justify-center gap-2.5 border-0 rounded-full px-4.5 py-3.5 font-bold bg-white text-gray-900 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             סגירה
