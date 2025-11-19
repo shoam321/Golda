@@ -82,7 +82,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
 
   const questions = [
     "איך היית מדרג/ת את החוויה הכללית שלך אצלנו?",
-    "איך היית מדרג/ת את איכות ההדרכה של המדריכים?",
+    "איך היית מדרג את רמת השירות?",
     "איך היית מדרג/ת את רמת השירות והיחס שקיבלת?",
     "איך היית מדרג/ת את האווירה והניקיון במתחם?",
     "באיזו מידה היית ממליץ/ה על הסטודיו לחבר או קולגה?",
@@ -91,7 +91,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
   return (
     <dialog
       ref={ref}
-      className="border-2 border-gray-900 rounded-2xl p-4 w-[min(92vw,720px)] shadow-2xl backdrop:bg-black/45 self-center"
+      className="centered-dialog border-2 border-gray-900 rounded-2xl p-4 w-[min(92vw,420px)] max-h-[80dvh] overflow-auto shadow-2xl backdrop:bg-black/45 m-0"
     >
       <h3 className="m-0 mb-2.5 text-base font-bold">דעתכם חשובה לנו</h3>
       <p className="m-0 mb-2 text-sm text-gray-600">דרגו כל סעיף בין ⭐1 ל-⭐5</p>
