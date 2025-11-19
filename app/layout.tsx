@@ -10,8 +10,8 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "סטודיו דוראל אזולאי — מאמן כושר",
-  description: "אימון אישי וקבוצות — תוצאות שמרגישים",
+  title: "GOLD סניף טירה — גלידה בכל הטעמים",
+  description: "גלידה בכל הטעמים וסוגים בהכנה אישית",
   generator: "v0.app",
   icons: {
     icon: [

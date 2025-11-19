@@ -66,7 +66,7 @@ export default function Home() {
         <div className="px-[18px] py-6">
           <h1 className="text-center font-bold text-2xl sm:text-3xl m-0 mb-2.5 tracking-wide"
               style={{ color: 'var(--foreground)' }}>
-            Golda
+            GOLD סניף טירה
           </h1>
           <p className="text-center text-sm opacity-90 m-0 mb-3.5"
              style={{ color: 'color-mix(in oklch, var(--foreground) 70%, white)' }}>
