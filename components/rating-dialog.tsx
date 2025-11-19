@@ -43,13 +43,13 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
       // Add all form data with descriptive names and star display
       const starDisplay = (rating: number) => '⭐'.repeat(rating) + ' ' + `(${rating}/5)`
       
-      formData.append('החוויה הכללית', starDisplay(ratings.q1))
-      formData.append('איכות ההדרכה', starDisplay(ratings.q2))
-      formData.append('רמת השירות', starDisplay(ratings.q3))
+  formData.append('החוויה הכללית', starDisplay(ratings.q1))
+  formData.append('רמת השירות', starDisplay(ratings.q2))
+  formData.append('רמת השירות והיחס', starDisplay(ratings.q3))
       formData.append('אווירה וניקיון', starDisplay(ratings.q4))
       formData.append('המלצה לאחרים', starDisplay(ratings.q5))
       formData.append('ממוצע כללי', `⭐ ${average.toFixed(1)}/5 ${average >= 4 ? '🎉' : ''}`)
-      formData.append('סטודיו', 'סטודיו דוראל אזולאי 💪')
+  formData.append('סניף', 'GOLD סניף טירה')
       formData.append('תאריך שליחה', new Date().toLocaleString("he-IL"))
 
       // Submit to Formspree
@@ -110,7 +110,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
         
         {/* Additional form data for Formspree */}
         <input type="hidden" name="average_rating" value={(ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length).toFixed(1)} />
-        <input type="hidden" name="studio_name" value="סטודיו דוראל אזולאי" />
+  <input type="hidden" name="studio_name" value="GOLD סניף טירה" />
         <input type="hidden" name="submission_date" value={new Date().toLocaleString("he-IL")} />
         
         <div className="flex gap-2 flex-wrap mt-2">

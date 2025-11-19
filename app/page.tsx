@@ -27,8 +27,8 @@ export default function Home() {
 
   const handleShare = async () => {
     const shareData = {
-      title: "Golda",
-      text: "ממליץ לבדוק את Golda!",
+      title: "GOLD סניף טירה",
+      text: "ממליץ לבדוק את GOLD סניף טירה!",
       url: "https://dorelazulay.co.il/?fbclid=PAZXh0bgNhZW0CMTEAAaZlRCLmopF17q5inc4w2-ZZ6aBuzcf2BE8Jk_rh0GRn6ciQW5Y2vpF1ISw_aem_eeCSzS95UJc1hSvBD5Q6Dg",
     }
 
@@ -141,7 +141,7 @@ export default function Home() {
 
         {/* Footer */}
         <div className="border-t px-3.5 py-2.5 text-center text-xs" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--secondary)', color: 'color-mix(in oklch, var(--foreground) 70%, white)' }}>
-          © {new Date().getFullYear()} Golda
+          © {new Date().getFullYear()} GOLD סניף טירה
         </div>
       </div>
 
