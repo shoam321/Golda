@@ -3,6 +3,10 @@
 import type React from "react"
 
 import { forwardRef, useState } from "react"
+
+// Optional second endpoint for JSON webhook submission.
+// Replace with your actual URL or set via NEXT_PUBLIC_WEBHOOK_URL.
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBHOOK_URL || "";
 import StarRating from "./star-rating"
 
 interface RatingDialogProps {
@@ -26,7 +30,8 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
     setRatings((prev) => ({ ...prev, [question]: value }))
   }
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
+  // New submit handler: sends ratings directly to n8n webhook as JSON
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (completedRatings.length < 5) {
@@ -36,48 +41,41 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
 
     setIsSubmitting(true)
 
+    const average = ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length
+
     try {
-      const formData = new FormData()
-      const average = ratingValues.reduce((a, b) => a + b, 0) / ratingValues.length
+      // n8n production webhook URL
+      const WEBHOOK_URL = "https://shairouvinov78.app.n8n.cloud/webhook/submit-rating"
 
-      // Add all form data with descriptive names and star display
-      const starDisplay = (rating: number) => '⭐'.repeat(rating) + ' ' + `(${rating}/5)`
-      
-  formData.append('החוויה הכללית', starDisplay(ratings.q1))
-  formData.append('רמת השירות', starDisplay(ratings.q2))
-  formData.append('רמת השירות והיחס', starDisplay(ratings.q3))
-      formData.append('אווירה וניקיון', starDisplay(ratings.q4))
-      formData.append('המלצה לאחרים', starDisplay(ratings.q5))
-      formData.append('ממוצע כללי', `⭐ ${average.toFixed(1)}/5 ${average >= 4 ? '🎉' : ''}`)
-  formData.append('סניף', 'GOLD סניף טירה')
-      formData.append('תאריך שליחה', new Date().toLocaleString("he-IL"))
-
-      // Submit to Formspree
-      const response = await fetch('https://formspree.io/f/xdkbkoel', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          businessName: "GOLDA",
+          ratings,
+          average: average.toFixed(1),
+          timestamp: new Date().toISOString()
+        })
       })
 
-      if (response.ok) {
-        console.log('Form submitted successfully to Formspree')
-        
-        if (ref && "current" in ref && ref.current?.open) {
-          ref.current.close()
-        }
-
-        onComplete(average)
+      if (!response.ok) {
+        console.error("Webhook error (n8n returned non-OK status)")
+        // Do not block user flow if webhook fails
       } else {
-        throw new Error('Form submission failed')
+        console.log("n8n webhook accepted rating payload")
       }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      alert('אירעה שגיאה בשליחת הדעה')
+    } catch (err) {
+      console.error("Error sending to n8n webhook:", err)
+      // Non-blocking: user still gets completion toast
     } finally {
       setIsSubmitting(false)
     }
+
+    if (ref && "current" in ref && ref.current?.open) {
+      ref.current.close()
+    }
+
+    onComplete(average)
   }
 
   const questions = [
@@ -96,7 +94,7 @@ const RatingDialog = forwardRef<HTMLDialogElement, RatingDialogProps>(({ onCompl
       <h3 className="m-0 mb-2.5 text-base font-bold">דעתכם חשובה לנו</h3>
       <p className="m-0 mb-2 text-sm text-gray-600">דרגו כל סעיף בין ⭐1 ל-⭐5</p>
 
-      <form onSubmit={handleFormSubmit} className="space-y-2">
+      <form onSubmit={handleSubmit} className="space-y-2">
         {questions.map((question, idx) => {
           const qKey = `q${idx + 1}` as keyof typeof ratings
           return (
